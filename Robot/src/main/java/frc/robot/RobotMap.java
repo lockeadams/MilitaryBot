@@ -14,7 +14,7 @@ public class RobotMap {
   public static WPI_TalonSRX frontLeft, rearLeft, frontRight, rearRight;
   public static double MAX_VELOCITY = 1000;
 
-  public void init() {
+  public static void init() {
 
     frontLeft = new WPI_TalonSRX(5);
     rearLeft = new WPI_TalonSRX(6);

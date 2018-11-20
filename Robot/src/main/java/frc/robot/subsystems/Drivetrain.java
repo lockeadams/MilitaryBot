@@ -16,7 +16,7 @@ public class Drivetrain extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new ManualDrive());
+    setDefaultCommand(new PowerGloveDrive());
   }
 
 

@@ -20,6 +20,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
+    RobotMap.init();
     m_drivetrain = new Drivetrain();
     m_oi = new OI();    
   }
