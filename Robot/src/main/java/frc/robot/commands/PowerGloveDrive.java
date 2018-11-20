@@ -16,14 +16,18 @@ public class PowerGloveDrive extends Command {
 
   NetworkTableInstance inst;
   NetworkTable table;
-  final double MAX_X, MAX_Y, MAX_Z;
+  final double MAX_X, MAX_Y, X_DEAD_MIN, X_DEAD_MAX, Y_DEAD_MIN, Y_DEAD_MAX;
+  double x, y;
   
 
   public PowerGloveDrive() {
     requires(Robot.m_drivetrain);
-    MAX_X = 300;
-    MAX_Y = 300;
-    MAX_Z = 300;
+    MAX_X = 255;
+    MAX_Y = 255;
+    X_DEAD_MIN = -55;
+    X_DEAD_MAX = 70;
+    Y_DEAD_MIN = -60;
+    Y_DEAD_MAX = 30;
   }
 
   @Override
@@ -34,15 +38,33 @@ public class PowerGloveDrive extends Command {
 
   @Override
   protected void execute() {
-    double x = table.getEntry("x").getDouble(0);
-    double y = table.getEntry("y").getDouble(0);
-    double z = table.getEntry("z").getDouble(0);
+    double xEntry = table.getEntry("x").getDouble(0);
+    double yEntry = table.getEntry("y").getDouble(0);
+
+    if(xEntry > X_DEAD_MIN && xEntry < X_DEAD_MAX) {
+      x = 0;
+    } else if(xEntry > MAX_X) {
+      x = MAX_X;
+    } else {
+      x = xEntry;
+    }
+
+    if(yEntry > Y_DEAD_MIN && yEntry < Y_DEAD_MAX) {
+      y = 0;
+    } else if(yEntry > MAX_Y) {
+      y = MAX_Y;
+    } else {
+      y = yEntry;
+    }
+
+
+    System.out.println("x: " + x + " y: " + y);
 
 
     double xSpeed = x / MAX_X;
-    double zTurn = z / MAX_Z;
+    double zTurn = y / MAX_Y;
 
-    Robot.m_drivetrain.velocityDrive(xSpeed, zTurn, RobotMap.MAX_VELOCITY);
+    //Robot.m_drivetrain.velocityDrive(xSpeed, zTurn, RobotMap.MAX_VELOCITY);
   }
 
   @Override

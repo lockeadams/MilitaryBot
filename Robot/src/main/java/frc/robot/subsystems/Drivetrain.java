@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.ManualDrive;
+import frc.robot.commands.*;
 
 public class Drivetrain extends Subsystem {
 
@@ -52,9 +52,9 @@ public class Drivetrain extends Subsystem {
 				rightInput = -MAX_VELOCITY * turnRatio;
 			}
 		}
+		System.out.println("right: " + rightInput + " left: " + leftInput); 
 		RobotMap.rearRight.set(ControlMode.Velocity, rightInput);
 		RobotMap.rearLeft.set(ControlMode.Velocity, leftInput);
-		System.out.println("right: " + rightInput + " left: " + leftInput); 
   }
 
   

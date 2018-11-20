@@ -1,16 +1,22 @@
-
 plugins {
     id "java"
+    id 'application'
     id "edu.wpi.first.GradleRIO" version "2018.06.21"
 }
 
+mainClassName = "Client"
+
 repositories {
     mavenCentral()
+    maven {
+        url 'http://first.wpi.edu/FRC/roborio/maven/release/'
+    }
 }
 
 dependencies {
     compile wpilib()
     compile 'com.fazecast:jSerialComm:2.3.0'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
 }
 
 jar {

@@ -26,8 +26,8 @@ public class ManualDrive extends Command {
   @Override
   protected void execute() {
 
-    double xSpeed = Robot.m_oi.pilot.getY(Hand.kLeft);
-	double zTurn = Robot.m_oi.pilot.getX(Hand.kRight);
+    double xSpeed = Robot.m_oi.pilot.getY();
+	  double zTurn = Robot.m_oi.pilot.getX();
 
     Robot.m_drivetrain.velocityDrive(xSpeed, zTurn, RobotMap.MAX_VELOCITY);
   }
