@@ -1,0 +1,9 @@
+/NTClient/build/*
+/Robot/build/*
+/.vscode
+/NTClient/bin/*
+/Robot/bin/*
+/NTClient/.gradle/*
+/Robot/.gradle/*
+/Robot/.vscode/*
+/NTClient/.vscode/*
