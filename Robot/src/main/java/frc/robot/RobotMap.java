@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 public class RobotMap {
 
   public static WPI_TalonSRX frontLeft, rearLeft, frontRight, rearRight;
-  public static double MAX_VELOCITY = 1000;
+  public static double MAX_VELOCITY = 2400;
 
   public static void init() {
 
@@ -22,7 +22,9 @@ public class RobotMap {
     rearRight = new WPI_TalonSRX(7);
 
     rearLeft.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.CTRE_MagEncoder_Relative,0, 0);
-		rearLeft.setSensorPhase(true);
+    rearLeft.setSensorPhase(true);
+    rearLeft.setInverted(true);
+
 		rearRight.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		rearRight.setSensorPhase(true);
 

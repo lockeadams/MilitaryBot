@@ -24,10 +24,10 @@ public class PowerGloveDrive extends Command {
     requires(Robot.m_drivetrain);
     MAX_X = 255;
     MAX_Y = 255;
-    X_DEAD_MIN = -55;
-    X_DEAD_MAX = 70;
+    X_DEAD_MIN = -75;
+    X_DEAD_MAX = 90;
     Y_DEAD_MIN = -60;
-    Y_DEAD_MAX = 30;
+    Y_DEAD_MAX = 60;
   }
 
   @Override
@@ -61,10 +61,10 @@ public class PowerGloveDrive extends Command {
     System.out.println("x: " + x + " y: " + y);
 
 
-    double xSpeed = x / MAX_X;
-    double zTurn = y / MAX_Y;
+    double xSpeed = y / MAX_Y;
+    double zTurn = x / MAX_X;
 
-    //Robot.m_drivetrain.velocityDrive(xSpeed, zTurn, RobotMap.MAX_VELOCITY);
+    Robot.m_drivetrain.velocityDrive(xSpeed, zTurn, RobotMap.MAX_VELOCITY);
   }
 
   @Override

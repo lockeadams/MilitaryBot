@@ -28,9 +28,11 @@ public class Drivetrain extends Subsystem {
    * @param MAX_VELOCITY
    */
   public void velocityDrive(double xSpeed, double zTurn, final double MAX_VELOCITY) {
+		xSpeed = xSpeed * MAX_VELOCITY;
+		zTurn = zTurn * MAX_VELOCITY;
 		double turnRatio;
-		double leftInput = xSpeed - zTurn;
-		double rightInput = xSpeed + zTurn;
+		double leftInput = xSpeed + zTurn;
+		double rightInput = xSpeed - zTurn;
 		if(leftInput > MAX_VELOCITY || rightInput > MAX_VELOCITY) {
 			if(rightInput > leftInput) {
 				turnRatio = leftInput / rightInput;
