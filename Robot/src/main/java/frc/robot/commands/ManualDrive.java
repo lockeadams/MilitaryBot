@@ -15,21 +15,31 @@ import frc.robot.RobotMap;
 
 public class ManualDrive extends Command {
 
-  public ManualDrive() {
-      requires(Robot.m_drivetrain);
+  public enum Loop {CLOSED, OPEN};
+  Loop type;
+
+  public ManualDrive(Loop type) {
+    this.type = type;
+    requires(Robot.m_drivetrain);
   }
 
   @Override
   protected void initialize() {
+    System.out.println("Manual drive.");
   }
 
   @Override
   protected void execute() {
 
-    double xSpeed = Robot.m_oi.pilot.getY();
-	  double zTurn = Robot.m_oi.pilot.getX();
+    double xSpeed = Robot.m_oi.pilot.getY(Hand.kLeft);
+	  double zTurn = Robot.m_oi.pilot.getX(Hand.kRight);
 
-    //Robot.m_drivetrain.velocityDrive(xSpeed, zTurn, RobotMap.MAX_VELOCITY);
+    if(type == Loop.CLOSED){
+      Robot.m_drivetrain.velocityDrive(xSpeed, zTurn, RobotMap.MAX_VELOCITY);
+    } else if(type == Loop.OPEN) {
+      RobotMap.drive.arcadeDrive(xSpeed, zTurn);
+    }
+    
   }
 
   @Override

@@ -18,6 +18,6 @@ public class OI {
   public OI() {
     pilot = new XboxController(0);
     a = new JoystickButton(pilot, 1);
-    a.toggleWhenPressed(new ManualDrive());
+    a.toggleWhenPressed(new PowerGloveDrive());
   }
 }

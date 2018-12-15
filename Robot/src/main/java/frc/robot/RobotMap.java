@@ -8,22 +8,23 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class RobotMap {
 
   public static WPI_TalonSRX frontLeft, rearLeft, frontRight, rearRight;
   public static double MAX_VELOCITY = 2400;
+  public static DifferentialDrive drive;
 
   public static void init() {
 
-    frontLeft = new WPI_TalonSRX(5);
-    rearLeft = new WPI_TalonSRX(6);
-    frontRight = new WPI_TalonSRX(8);
-    rearRight = new WPI_TalonSRX(7);
+    frontLeft = new WPI_TalonSRX(3);
+    rearLeft = new WPI_TalonSRX(4);
+    frontRight = new WPI_TalonSRX(6);
+    rearRight = new WPI_TalonSRX(5);
 
     rearLeft.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.CTRE_MagEncoder_Relative,0, 0);
     rearLeft.setSensorPhase(true);
-    rearLeft.setInverted(true);
 
 		rearRight.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		rearRight.setSensorPhase(true);
@@ -31,6 +32,7 @@ public class RobotMap {
     frontLeft.follow(rearLeft);
     frontRight.follow(rearRight);
 
+    drive = new DifferentialDrive(rearLeft, rearRight);
   }
 
 }

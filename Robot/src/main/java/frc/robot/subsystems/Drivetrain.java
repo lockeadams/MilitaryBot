@@ -11,12 +11,13 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.*;
+import frc.robot.commands.ManualDrive.Loop;
 
 public class Drivetrain extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new PowerGloveDrive());
+    setDefaultCommand(new ManualDrive(Loop.OPEN));
   }
 
 
