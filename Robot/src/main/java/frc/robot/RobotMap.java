@@ -18,13 +18,13 @@ public class RobotMap {
 
   public static void init() {
 
-    frontLeft = new WPI_TalonSRX(3);
-    rearLeft = new WPI_TalonSRX(4);
-    frontRight = new WPI_TalonSRX(6);
-    rearRight = new WPI_TalonSRX(5);
+    frontLeft = new WPI_TalonSRX(8);
+    rearLeft = new WPI_TalonSRX(7);
+    frontRight = new WPI_TalonSRX(9);
+    rearRight = new WPI_TalonSRX(10);
 
     rearLeft.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.CTRE_MagEncoder_Relative,0, 0);
-    rearLeft.setSensorPhase(true);
+    rearLeft.setSensorPhase(false);
 
 		rearRight.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		rearRight.setSensorPhase(true);

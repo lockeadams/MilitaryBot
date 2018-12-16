@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.Drivetrain.Loop;
 
 public class ManualDrive extends Command {
 
-  public enum Loop {CLOSED, OPEN};
   Loop type;
 
   public ManualDrive(Loop type) {
@@ -25,7 +25,8 @@ public class ManualDrive extends Command {
 
   @Override
   protected void initialize() {
-    System.out.println("Manual drive.");
+    if(type == Loop.OPEN) System.out.println("Open loop manual drive.");
+    if(type == Loop.CLOSED) System.out.println("Closed loop manual drive.");
   }
 
   @Override
@@ -34,11 +35,8 @@ public class ManualDrive extends Command {
     double xSpeed = Robot.m_oi.pilot.getY(Hand.kLeft);
 	  double zTurn = Robot.m_oi.pilot.getX(Hand.kRight);
 
-    if(type == Loop.CLOSED){
-      Robot.m_drivetrain.velocityDrive(xSpeed, zTurn, RobotMap.MAX_VELOCITY);
-    } else if(type == Loop.OPEN) {
-      RobotMap.drive.arcadeDrive(xSpeed, zTurn);
-    }
+    if(type == Loop.CLOSED) Robot.m_drivetrain.velocityDrive(xSpeed, zTurn, RobotMap.MAX_VELOCITY);
+    if(type == Loop.OPEN) RobotMap.drive.arcadeDrive(xSpeed, zTurn);
     
   }
 

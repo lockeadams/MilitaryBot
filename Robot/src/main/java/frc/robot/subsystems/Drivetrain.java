@@ -11,9 +11,10 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.*;
-import frc.robot.commands.ManualDrive.Loop;
 
 public class Drivetrain extends Subsystem {
+
+  public enum Loop {CLOSED, OPEN};
 
   @Override
   public void initDefaultCommand() {

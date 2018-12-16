@@ -11,6 +11,7 @@ import edu.wpi.first.networktables.*;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.Drivetrain.Loop;
 
 public class PowerGloveDrive extends Command {
 
@@ -18,16 +19,17 @@ public class PowerGloveDrive extends Command {
   NetworkTable table;
   final double MAX_X, MAX_Y, X_DEAD_MIN, X_DEAD_MAX, Y_DEAD_MIN, Y_DEAD_MAX;
   double x, y;
-  
+  Loop type;
 
-  public PowerGloveDrive() {
+  public PowerGloveDrive(Loop type) {
     requires(Robot.m_drivetrain);
-    MAX_X = 255;
-    MAX_Y = 255;
+    MAX_X = 150;
+    MAX_Y = 215;
     X_DEAD_MIN = -75;
     X_DEAD_MAX = 90;
     Y_DEAD_MIN = -60;
     Y_DEAD_MAX = 60;
+    this.type = type;
   }
 
   @Override
@@ -61,10 +63,11 @@ public class PowerGloveDrive extends Command {
     System.out.println("x: " + x + " y: " + y);
 
 
-    double xSpeed = y / MAX_Y;
+    double xSpeed = -y / MAX_Y;
     double zTurn = x / MAX_X;
 
-    Robot.m_drivetrain.velocityDrive(xSpeed, zTurn, RobotMap.MAX_VELOCITY);
+    if(type == Loop.OPEN) RobotMap.drive.arcadeDrive(xSpeed, zTurn);
+    if(type == Loop.CLOSED) Robot.m_drivetrain.velocityDrive(xSpeed, zTurn, RobotMap.MAX_VELOCITY);
   }
 
   @Override

@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Drivetrain;
 
 public class Robot extends TimedRobot {
@@ -50,6 +51,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    SmartDashboard.putNumber("L Vel", RobotMap.rearLeft.getSelectedSensorVelocity(0));
+    SmartDashboard.putNumber("R Vel", RobotMap.rearRight.getSelectedSensorVelocity(0));
   }
 
   @Override

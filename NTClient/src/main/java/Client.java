@@ -18,7 +18,7 @@ public class Client {
     inst.startDSClient();
 
     String data = "";
-    SerialPort comPort = SerialPort.getCommPorts()[0];
+    SerialPort comPort = SerialPort.getCommPorts()[1];
     comPort.openPort();
     comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 100, 0);
     InputStream in = comPort.getInputStream();
