@@ -10,3 +10,5 @@ NTClient/.vscode/
 .wpilib
 NTclient/.wpilib
 Robot/.wpilib
+NTClient/.settings
+Robot/.settings

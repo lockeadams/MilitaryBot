@@ -26,6 +26,8 @@ public class Client {
         comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 100, 0);
         InputStream in = comPort.getInputStream();
 
+        int slashCount = 0;
+
         //constantly read input stream
         while (true) {
         
@@ -47,7 +49,7 @@ public class Client {
             String keyString = Character.toString(key);
 
             //construct string from incoming characters if protocol is complete
-            if (key == '>' && data.contains("/") && data.length() > 5 && data.contains("<")) {
+            if (key == '>' && data.contains("/") && 5 < data.length() && data.length() < 17 && data.contains("<") && slashCount == 2) {
                 data = data.concat(keyString);
                 System.out.println(data);
 
@@ -68,13 +70,16 @@ public class Client {
 
                 //reset data string
                 data = "";
+                slashCount = 0;
 
             //if string has end character but no start, reset string and try again
             } else if (key == '>' && !(data.contains("<"))) {
                 data = "";
+                slashCount = 0;
             //otherwise just add character to current string
             } else {
                 data = data.concat(keyString);
+                if(keyString.equalsIgnoreCase("/")) slashCount++;
             }
         }
     }
