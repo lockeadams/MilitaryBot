@@ -25,9 +25,11 @@ public class RobotMap {
 
     rearLeft.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.CTRE_MagEncoder_Relative,0, 0);
     rearLeft.setSensorPhase(false);
+    rearLeft.configOpenloopRamp(0.3, 10);
 
 		rearRight.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
-		rearRight.setSensorPhase(true);
+    rearRight.setSensorPhase(true);
+    rearRight.configOpenloopRamp(0.3, 10);
 
     frontLeft.follow(rearLeft);
     frontRight.follow(rearRight);

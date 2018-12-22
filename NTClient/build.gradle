@@ -17,6 +17,7 @@ dependencies {
     compile wpilib()
     compile 'com.fazecast:jSerialComm:2.3.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 }
 
 jar {
@@ -25,4 +26,8 @@ jar {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '4.7'
+}
+
+run{
+    standardInput = System.in
 }

@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,7 +21,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     RobotMap.init();
     m_drivetrain = new Drivetrain();
-    m_oi = new OI();    
+    m_oi = new OI();  
+    CameraServer.getInstance().startAutomaticCapture();  
   }
 
   @Override
