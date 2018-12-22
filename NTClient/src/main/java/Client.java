@@ -40,13 +40,12 @@ public class Client {
         while (true) {
         
             //attempt to get characters from stream
-            char key;
             if(in != null) {
-                key = (char) in.read();
+                char key = (char) in.read();
                 String keyString = Character.toString(key);
 
                 //construct string from incoming characters if protocol is complete
-                if (key == '>' && data.contains("/") && 5 < data.length() && data.length() < 17 && data.contains("<") && slashCount == 2) {
+                if (key == '>' && data.contains("/") && 5 < data.length() && data.length() < 20 && data.contains("<") && slashCount == 2) {
                     data = data.concat(keyString);
                     System.out.println(data);
 
