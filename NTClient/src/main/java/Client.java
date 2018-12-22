@@ -11,14 +11,6 @@ public class Client {
 
     public void run() throws IOException {
 
-        //create network table and declare entries for x, y, z, then start client
-        NetworkTableInstance inst = NetworkTableInstance.getDefault();
-        NetworkTable table = inst.getTable("datatable");
-        NetworkTableEntry xEntry = table.getEntry("x");
-        NetworkTableEntry yEntry = table.getEntry("y");
-        NetworkTableEntry zEntry = table.getEntry("z");
-        inst.startClientTeam(4188);
-
         //ask for com port
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter com port that device is connected to.");
@@ -33,6 +25,14 @@ public class Client {
         comPort.openPort();
         comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 100, 0);
         InputStream in = comPort.getInputStream();
+        
+        //create network table and declare entries for x, y, z, then start client
+        NetworkTableInstance inst = NetworkTableInstance.getDefault();
+        NetworkTable table = inst.getTable("datatable");
+        NetworkTableEntry xEntry = table.getEntry("x");
+        NetworkTableEntry yEntry = table.getEntry("y");
+        NetworkTableEntry zEntry = table.getEntry("z");
+        inst.startClientTeam(4188);
 
         int slashCount = 0;
 
@@ -85,8 +85,8 @@ public class Client {
                     if(keyString.equalsIgnoreCase("/")) slashCount++;
                 }
             } else {
-                System.out.println("Could not read input stream.");
-                System.out.println("Ensure glove is connected and com port is correct.");
+                System.err.println("Could not read input stream.");
+                System.err.println("Ensure glove is connected and com port is correct.");
                 try {Thread.sleep(5000);} 
                 catch (InterruptedException e) {e.printStackTrace();}
             }
